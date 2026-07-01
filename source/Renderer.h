@@ -4,7 +4,7 @@
 // STL
 #include <memory>
 
-#include "MeshTypes.h"
+#include "SceneModelTypes.h"
 #include "MaterialTypes.h"
 #include "Shader.h"
 
@@ -19,10 +19,10 @@ class Renderer
     public:
         Renderer(QOpenGLExtraFunctions* openGLFunctions);
 
-        void render(glm::mat4& modelMatrix, GpuHandles* gpuHandle, gfx::MaterialProperties* material, Shader* shader);
+        void render(glm::mat4& modelMatrix, GpuHandles* gpuHandle, gfx::Material* material, Shader* shader);
 
     private:
-        void applyMaterial(gfx::MaterialProperties* material, Shader* Shader);
+        void applyMaterial(gfx::Material* material, Shader* Shader);
         void draw(uint32_t numVertices, bool EBO);
         void bindVAO(GLuint VAO);
 

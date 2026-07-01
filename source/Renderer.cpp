@@ -24,7 +24,7 @@ namespace gfx
         }
     }
 
-    void Renderer::applyMaterial(gfx::MaterialProperties* material, Shader* shader)
+    void Renderer::applyMaterial(gfx::Material* material, Shader* shader)
     {
         //TODO: uniform names shouldnt be hardcoded here.
         shader->updateUniformValue("material.shininess", material->shininess);
@@ -38,7 +38,7 @@ namespace gfx
         m_openGLFunctions->glBindTexture(GL_TEXTURE_2D, material->lightingTextures.specular);
     }
 
-    void Renderer::render(glm::mat4& modelMatrix, GpuHandles* gpuHandle, gfx::MaterialProperties* material, Shader* shader)
+    void Renderer::render(glm::mat4& modelMatrix, GpuHandles* gpuHandle, gfx::Material* material, Shader* shader)
     {
         shader->useProgram();
         shader->updateModelMatrixValue(modelMatrix);
@@ -46,6 +46,6 @@ namespace gfx
         applyMaterial(material, shader);
 
         bindVAO(gpuHandle->VAO);
-        draw(gpuHandle->numVertices, gpuHandle->useEBO);
+        //draw(gpuHandle->numVertices, gpuHandle->useEBO); // TODO: Deactivated while testing 
     }
 }

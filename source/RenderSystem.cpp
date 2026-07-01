@@ -27,9 +27,9 @@ void RenderSystem::runRender(Camera* camera, Renderer* renderer, EntityManager* 
 
     if(transformPool == nullptr)
     {
-        #ifdef ENABLE_DEBUG_MESSAGES
-            std::cout << "ERROR::RenderSystem::runRender::Transform pool doesn't exist. Nothing to render." << std::endl;
-        #endif
+        // #ifdef ENABLE_DEBUG_MESSAGES
+        //     std::cout << "ERROR::RenderSystem::runRender::Transform pool doesn't exist. Nothing to render." << std::endl;
+        // #endif
         return;
     }
 
@@ -39,7 +39,7 @@ void RenderSystem::runRender(Camera* camera, Renderer* renderer, EntityManager* 
     for (auto transformIter = poolBegin; transformIter != poolEnd; ++transformIter)
     {
         size_t index = std::distance(poolBegin, transformIter);
-        Entity entity = transformPool->getEntityID(index);
+        Entity::Entity entity = transformPool->getEntityID(index);
 
         auto mesh = entityManager->getPoolElement<gfx::GpuHandles>(entity);
 
@@ -51,7 +51,7 @@ void RenderSystem::runRender(Camera* camera, Renderer* renderer, EntityManager* 
             #endif
         }
 
-        auto material = entityManager->getPoolElement<gfx::MaterialProperties>(entity);
+        auto material = entityManager->getPoolElement<gfx::Material>(entity);
 
         if (material == nullptr)
         {
